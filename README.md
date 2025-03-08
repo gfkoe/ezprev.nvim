@@ -9,4 +9,4 @@ treesitter for tracking the function and file definitions
 ### how to use
 
 default keybindings:
-`vim "<leader>ep" to show the window"`
+`vim "<leader>ep" to show the window`
