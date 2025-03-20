@@ -1,29 +1,24 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
 local M = {}
 
 M.setup = function()
 	--nothing rn
 end
 
-M.get_function = function()
-	local node = ts_utils.get_node_at_cursor(0, true)
-	if not node then
-		print("Treesitter failed to parse node")
-		return nil
-	end
-
-	local func_name = vim.treesitter.get_node_text(node, 0)
-
-	return func_name
+M.get_definition = function()
+	local params = vim.lsp.util.make_position_params()
+	vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result)
+		if not result or vim.tbl_isempty(result) then
+			print("No definition found")
+			return
+		end
+	end)
+	return nil
 end
 
-M.open_window = function()
-	local func_name = M.get_function()
-	if not func_name then
+M.open_window = function(def)
+	if not def then
 		return
 	end
-
-	local def = { func_name }
 
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, def)
@@ -46,7 +41,7 @@ end
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>ep",
-	":lua require('ezprev').open_window(require('ezprev').get_function())<CR>",
+	":lua require('ezprev').get_definition()<CR>",
 	{ noremap = true, silent = true }
 )
 
