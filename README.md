@@ -2,7 +2,8 @@
 
 simply hover over the function or a file import and press your keybinding to open a floating window with the definition.
 
-### how to use
+## how to use
 
-default keybindings:
-`<leader>gd` in normal mode will open a floating window of the definition under the cursor
+default keymappings:
+```<leader>gd``` 
+in normal mode will open a floating window of the definition under the cursor
