@@ -2,11 +2,7 @@
 
 simply hover over the function or a file import and press your keybinding to open a floating window with the definition.
 
-### dependencies:
-
-treesitter for tracking the function and file definitions
-
 ### how to use
 
 default keybindings:
-`vim "<leader>ep" to show the window`
+`<leader>gd` in normal mode will open a floating window of the definition under the cursor
