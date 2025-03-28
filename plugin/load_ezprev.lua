@@ -1,1 +1,1 @@
-require "ezprev"
+require("ezprev").setup()

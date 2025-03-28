@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function()
 	--nothing rn
+	M.use_keymaps()
 end
 
 M.open_window = function(def, pos)
@@ -48,16 +49,16 @@ local process = function(result)
 	M.open_window(target, pos)
 end
 
-local processer = function(method)
+local processer = function()
 	return function(_, result, _)
 		process(result)
 	end
 end
 
-M.get_handler = function(method)
+M.get_handler = function()
 	for k, v in pairs(vim.lsp.handlers) do
 		if string.find(k, "textDocument") and type(v) == "function" then
-			return processer(method)
+			return processer()
 		end
 	end
 end
@@ -65,14 +66,16 @@ end
 M.get_definition = function()
 	local params = vim.lsp.util.make_position_params()
 	local method = "textDocument/implementation"
-	pcall(vim.lsp.buf_request, 0, method, params, M.get_handler(method))
+	pcall(vim.lsp.buf_request, 0, method, params, M.get_handler())
 end
 
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>gd",
-	":lua require('ezprev').get_definition()<CR>",
-	{ noremap = true, silent = true }
-)
+M.use_keymaps = function()
+	vim.api.nvim_set_keymap(
+		"n",
+		"<leader>gd",
+		":lua require('ezprev').get_definition()<CR>",
+		{ noremap = true, silent = true }
+	)
+end
 
 return M
