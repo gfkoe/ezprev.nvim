@@ -6,13 +6,8 @@ end
 
 M.get_definition = function()
 	local params = vim.lsp.util.make_position_params()
-	vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result)
-		if not result or vim.tbl_isempty(result) then
-			print("No definition found")
-			return
-		end
-	end)
-	return nil
+	local method = "textDocument/definition"
+	pcall(vim.lsp.buf_request, 0, method, params, function(_, _, result) end)
 end
 
 M.open_window = function(def)
