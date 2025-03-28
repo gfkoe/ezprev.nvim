@@ -4,6 +4,8 @@ simply hover over the function or a file import and press your keybinding to ope
 
 ## how to use
 
-default keymappings:
-```<leader>gd``` 
-in normal mode will open a floating window of the definition under the cursor
+default keymappings to open floating window of definition under cursor in normal mode:
+
+```vim
+<leader>gd
+``` 
