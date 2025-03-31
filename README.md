@@ -9,5 +9,3 @@ default keymappings to open floating window of definition under cursor in normal
 ```vim
 <leader>gd
 ```
-
-Thank you to ```rmagatti/goto-preview``` for the inspiration. Find the project here: [link](https://github.com/rmagatti/goto-preview)
