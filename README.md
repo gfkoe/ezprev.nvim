@@ -2,6 +2,14 @@
 
 simply hover over the function or a file import and press your keybinding to open a floating window with the definition.
 
+## how to install
+
+lazy.nvim:
+```lua
+return {
+    "gfkoeb/ezprev.nvim"
+}
+```
 ## how to use
 
 default keymappings to open floating window of definition under cursor in normal mode:
