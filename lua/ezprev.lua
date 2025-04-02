@@ -64,6 +64,13 @@ M.get_definition = function()
 	pcall(vim.lsp.buf_request, 0, method, params, M.get_handler())
 end
 
+M.get_declaration = function()
+	local params = vim.lsp.util.make_position_params()
+	-- idk what this needs to be
+	local method = "textDocument/declaration"
+	pcall(vim.lsp.buf_request, 0, method, params, M.get_handler())
+end
+
 M.use_keymaps = function()
 	vim.api.nvim_set_keymap(
 		"n",
@@ -71,6 +78,13 @@ M.use_keymaps = function()
 		":lua require('ezprev').get_definition()<CR>",
 		{ noremap = true, silent = true }
 	)
+
+	--vim.api.nvim_set_keymap(
+	--	"n",
+	--	"<leader>gd",
+	--	":lua require('ezprev').get_declaration()<CR>",
+	--	{ noremap = true, silent = true }
+	--)
 end
 
 return M
