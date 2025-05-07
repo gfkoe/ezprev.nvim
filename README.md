@@ -22,7 +22,3 @@ use {
     "gfkoeb/ezprev.nvim"
 }
 ```
-
-
-
-Thank you to ```rmagatti/goto-preview``` for the inspiration. Find the project here: [link](https://github.com/rmagatti/goto-preview)
